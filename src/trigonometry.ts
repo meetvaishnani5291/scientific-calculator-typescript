@@ -1,18 +1,19 @@
 //  function for calcution of all trigonomerty functions
 let degreeFlag = true;
-let degreeBtn = document.querySelector(".degree-btn");
+let degreeBtn = document.querySelector(".degree-btn")!;
+type typeOfTrigonometryFunction = typeof Math.sin;
 
-let trigonometryCalculate = function (event) {
+let trigonometryCalculate = function (event: Event) {
   let inputNumber = currentOperation.value;
-  let trigonometryOpeartion = event.currentTarget.id;
+  let trigonometryOpeartion = (event.currentTarget as HTMLElement).id;
   try {
     let degreeForFunction = degreeFlag
-      ? (currentOperation.value * Math.PI) / 180
+      ? (Number(currentOperation.value) * Math.PI) / 180
       : currentOperation.value;
     if (trigonometryOpeartion.slice(-1) == "h") {
-      currentOperation.value = Math[trigonometryOpeartion](
-        currentOperation.value
-      );
+      currentOperation.value = (
+        Math[trigonometryOpeartion as keyof Math] as typeOfTrigonometryFunction
+      )(Number(currentOperation.value)).toString();
       if (trigonometryOpeartion[0] == "a") {
         previousOperation.value =
           trigonometryOpeartion.slice(1) + "I(" + inputNumber + ")";
@@ -21,16 +22,27 @@ let trigonometryCalculate = function (event) {
           trigonometryOpeartion.slice(0) + "(" + inputNumber + ")";
       }
     } else if (trigonometryOpeartion.slice(0, 1) == "a") {
-      currentOperation.value = degreeFlag
-        ? (180 / Math.PI) * Math[trigonometryOpeartion](currentOperation.value)
-        : Math[trigonometryOpeartion](currentOperation.value);
+      currentOperation.value = (
+        degreeFlag
+          ? (180 / Math.PI) *
+            (
+              Math[
+                trigonometryOpeartion as keyof Math
+              ] as typeOfTrigonometryFunction
+            )(Number(currentOperation.value))
+          : (
+              Math[
+                trigonometryOpeartion as keyof Math
+              ] as typeOfTrigonometryFunction
+            )(Number(currentOperation.value))
+      ).toString();
       previousOperation.value =
         trigonometryOpeartion.slice(1) + "I(" + inputNumber + ")";
     } else {
       currentOperation.value = Math[trigonometryOpeartion](degreeForFunction);
       previousOperation.value = trigonometryOpeartion + "(" + inputNumber + ")";
     }
-    if (isNaN(currentOperation.value)) throw "Not a number.";
+    if (isNaN(Number(currentOperation.value))) throw "Not a number.";
     currentOperation.value = Number(currentOperation.value).toFixed(5);
   } catch (err) {
     currentOperation.value = "Invalid syntax";
@@ -70,7 +82,7 @@ let trigonometryCalculateForOther = function (event) {
       previousOperation.value =
         displayOperation.slice(0, 3) + "(" + inputNumber + ")";
     }
-    if (isNaN(currentOperation.value)) throw "Not a number.";
+    if (isNaN(Number(currentOperation.value))) throw "Not a number.";
     currentOperation.value = Number(currentOperation.value).toFixed(5);
   } catch (err) {
     currentOperation.value = "Invalid syntax";
