@@ -26,7 +26,7 @@ let valueForNthrootFunctions = "Not a Number";
 plusOrMinusBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = -1 * currentOperation.value;
+        currentOperation.value = (-1 * Number(currentOperation.value)).toString();
         previousOperation.value = "-(" + operationExpression + ")";
     }
     catch (err) {
@@ -36,12 +36,12 @@ plusOrMinusBtn.addEventListener("click", (event) => {
 factorialBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = parseInt(currentOperation.value), res = 1;
-        if (isNaN(currentOperation.value))
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = operationExpression + "!";
         while (operationExpression)
             res = res * operationExpression--;
-        currentOperation.value = res;
+        currentOperation.value = res.toString();
     }
     catch (err) {
         currentOperation.value = "Invalid syntax";
@@ -49,7 +49,7 @@ factorialBtn.addEventListener("click", (event) => {
 });
 piBtn.addEventListener("click", (event) => {
     try {
-        currentOperation.value = Math.PI;
+        currentOperation.value = Math.PI.toString();
         previousOperation.value = "PI";
     }
     catch (err) {
@@ -58,7 +58,7 @@ piBtn.addEventListener("click", (event) => {
 });
 eBtn.addEventListener("click", (event) => {
     try {
-        currentOperation.value = Math.E;
+        currentOperation.value = Math.E.toString();
         previousOperation.value = "E";
     }
     catch (err) {
@@ -68,8 +68,8 @@ eBtn.addEventListener("click", (event) => {
 squareBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = currentOperation.value ** 2;
-        if (isNaN(currentOperation.value))
+        currentOperation.value = (Number(currentOperation.value) ** 2).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = operationExpression;
     }
@@ -80,9 +80,9 @@ squareBtn.addEventListener("click", (event) => {
 inverseBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = 1 / currentOperation.value;
+        currentOperation.value = (1 / Number(currentOperation.value)).toString();
         previousOperation.value = "1/" + operationExpression;
-        if (isNaN(currentOperation.value))
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
     }
     catch (err) {
@@ -92,8 +92,8 @@ inverseBtn.addEventListener("click", (event) => {
 absBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.abs(currentOperation.value);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.abs(Number(currentOperation.value)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "abs(" + operationExpression + ")";
     }
@@ -106,7 +106,7 @@ expBtn.addEventListener("click", (event) => {
         if (!currentOperation.value.length) {
             return;
         }
-        if (!isNaN(currentOperation.value.slice(-1))) {
+        if (!isNaN(Number(currentOperation.value.slice(-1)))) {
             currentOperation.value += ".e";
         }
     }
@@ -117,7 +117,7 @@ expBtn.addEventListener("click", (event) => {
 epowerBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.exp(currentOperation.value);
+        currentOperation.value = Math.exp(Number(currentOperation.value)).toString();
         previousOperation.value = "e^" + operationExpression;
     }
     catch (err) {
@@ -129,7 +129,7 @@ modBtn.addEventListener("click", (event) => {
         if (!currentOperation.value.length) {
             return;
         }
-        if (!isNaN(currentOperation.value.slice(-1)) ||
+        if (!isNaN(Number(currentOperation.value.slice(-1))) ||
             currentOperation.value.slice(-1) == ")") {
             currentOperation.value += "%";
         }
@@ -141,8 +141,8 @@ modBtn.addEventListener("click", (event) => {
 lnBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.log(currentOperation.value);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.log(Number(currentOperation.value)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "ln(" + operationExpression + ")";
     }
@@ -153,8 +153,8 @@ lnBtn.addEventListener("click", (event) => {
 logBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.log10(currentOperation.value);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.log10(Number(currentOperation.value)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "log(" + operationExpression + ")";
     }
@@ -165,8 +165,8 @@ logBtn.addEventListener("click", (event) => {
 tenpowerBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = 10 ** currentOperation.value;
-        if (isNaN(currentOperation.value))
+        currentOperation.value = (10 ** Number(currentOperation.value)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "10^" + operationExpression;
     }
@@ -179,7 +179,7 @@ xPowerBtn.addEventListener("click", (event) => {
         if (!currentOperation.value.length) {
             return;
         }
-        if (!isNaN(currentOperation.value.slice(-1)) ||
+        if (!isNaN(Number(currentOperation.value.slice(-1))) ||
             currentOperation.value.slice(-1) == ")") {
             currentOperation.value += "^";
         }
@@ -191,8 +191,8 @@ xPowerBtn.addEventListener("click", (event) => {
 underootBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.sqrt(currentOperation.value);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.sqrt(Number(currentOperation.value)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "sqrt(" + operationExpression + ")";
     }
@@ -208,8 +208,8 @@ secondBtn.addEventListener("click", () => {
 cubeBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.pow(operationExpression, 3);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.pow(Number(operationExpression), 3).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = operationExpression + "^3";
     }
@@ -220,8 +220,8 @@ cubeBtn.addEventListener("click", (event) => {
 cuberootBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.cbrt(operationExpression);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.cbrt(Number(operationExpression)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "3rdRoot(" + operationExpression + ")";
     }
@@ -232,8 +232,8 @@ cuberootBtn.addEventListener("click", (event) => {
 twopowerBtn.addEventListener("click", (event) => {
     try {
         let operationExpression = currentOperation.value;
-        currentOperation.value = Math.pow(2, operationExpression);
-        if (isNaN(currentOperation.value))
+        currentOperation.value = Math.pow(2, Number(operationExpression)).toString();
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
         previousOperation.value = "2^" + operationExpression;
     }
@@ -243,9 +243,9 @@ twopowerBtn.addEventListener("click", (event) => {
 });
 logybasebtn.addEventListener("click", (event) => {
     try {
-        if (isNaN(currentOperation.value))
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
-        valueForLogybaseFunctions = Number(currentOperation.value);
+        valueForLogybaseFunctions = Number(currentOperation.value).toString();
         previousOperation.value = valueForLogybaseFunctions + "logybase";
         currentOperation.value = "";
     }
@@ -255,9 +255,9 @@ logybasebtn.addEventListener("click", (event) => {
 });
 nthrootBtn.addEventListener("click", (event) => {
     try {
-        if (isNaN(currentOperation.value))
+        if (isNaN(Number(currentOperation.value)))
             throw "Not a number";
-        valueForNthrootFunctions = Number(currentOperation.value);
+        valueForNthrootFunctions = Number(currentOperation.value).toString();
         currentOperation.value = "";
         previousOperation.value = valueForNthrootFunctions + "nthroot";
     }

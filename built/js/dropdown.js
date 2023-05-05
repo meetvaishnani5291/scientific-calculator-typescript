@@ -13,28 +13,28 @@ let trigonometrySecondFlag = false;
 let trigonometryHypFlag = false;
 let trigonometryDropdownDisplay = function () {
     if (trigonometrySecondFlag && trigonometryHypFlag) {
-        trigonometryDropdown1.style = "display : none";
-        trigonometryDropdown2.style = "display : none";
-        trigonometryDropdown3.style = "display : none";
-        trigonometryDropdown4.style = "display : block";
+        trigonometryDropdown1.classList.toggle("hide-btn");
+        trigonometryDropdown2.classList.toggle("hide-btn");
+        trigonometryDropdown3.classList.toggle("hide-btn");
+        trigonometryDropdown4.classList.toggle("hide-btn");
     }
     else if (trigonometrySecondFlag && !trigonometryHypFlag) {
-        trigonometryDropdown1.style = "display : none";
-        trigonometryDropdown2.style = "display : block";
-        trigonometryDropdown3.style = "display : none";
-        trigonometryDropdown4.style = "display : none";
+        trigonometryDropdown1.classList.toggle("hide-btn");
+        trigonometryDropdown2.classList.toggle("hide-btn");
+        trigonometryDropdown3.classList.toggle("hide-btn");
+        trigonometryDropdown4.classList.toggle("hide-btn");
     }
     else if (!trigonometrySecondFlag && trigonometryHypFlag) {
-        trigonometryDropdown1.style = "display : none";
-        trigonometryDropdown2.style = "display : none";
-        trigonometryDropdown3.style = "display : block";
-        trigonometryDropdown4.style = "display : none";
+        trigonometryDropdown1.classList.toggle("hide-btn");
+        trigonometryDropdown2.classList.toggle("hide-btn");
+        trigonometryDropdown3.classList.toggle("hide-btn");
+        trigonometryDropdown4.classList.toggle("hide-btn");
     }
     else {
-        trigonometryDropdown1.style = "display : block";
-        trigonometryDropdown2.style = "display : none";
-        trigonometryDropdown3.style = "display : none";
-        trigonometryDropdown4.style = "display : none";
+        trigonometryDropdown1.classList.toggle("hide-btn");
+        trigonometryDropdown2.classList.toggle("hide-btn");
+        trigonometryDropdown3.classList.toggle("hide-btn");
+        trigonometryDropdown4.classList.toggle("hide-btn");
     }
 };
 trigonometryBtn.addEventListener("click", () => {
@@ -42,13 +42,13 @@ trigonometryBtn.addEventListener("click", () => {
 });
 trigonometrySecondBtns.forEach((button) => {
     button.addEventListener("click", () => {
-        trigonometrySecondFlag = trigonometrySecondFlag ? 0 : 1;
+        trigonometrySecondFlag = trigonometrySecondFlag ? false : true;
         trigonometryDropdownDisplay();
     });
 });
 trigonometryHypBtns.forEach((button) => {
     button.addEventListener("click", () => {
-        trigonometryHypFlag = trigonometryHypFlag ? 0 : 1;
+        trigonometryHypFlag = trigonometryHypFlag ? false : true;
         trigonometryDropdownDisplay();
     });
 });
